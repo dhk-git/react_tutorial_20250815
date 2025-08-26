@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Services = () => {
+const Services: React.FC = () => {
   return (
     <div>
       <h1 className='mt-20'>Services</h1>
