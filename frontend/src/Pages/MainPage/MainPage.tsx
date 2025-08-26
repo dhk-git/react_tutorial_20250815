@@ -1,9 +1,14 @@
 import React from 'react'
+import Hero from './Hero'
+import Forum from './Forum'
+import Contact from './Contact'
 
 const MainPage: React.FC = () => {
   return (
     <div>
-      <h1 className='mt-20'>MainPage</h1>
+      <Hero />
+      <Forum />
+      <Contact />
     </div>
   )
 }
