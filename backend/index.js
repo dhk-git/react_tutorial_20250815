@@ -1,11 +1,18 @@
+require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
 const PORT = 3000;
 
 app.get("/", (req, res) => {
-    res.send("Hello world");
-})
+  res.send("Hello world");
+});
+
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB와 연결 되었습니다."))
+  .catch((err) => console.log("Mongodb와 연결 실패", err));
 
 app.listen(PORT, () => {
-    console.log("Server is running");
-})
+  console.log("Server is running");
+});
