@@ -59,7 +59,7 @@ router.post("/login", async (req, res) => {
       await user.save();
       return res.status(401).json({
         message: "비밀번호가 일치하지 않습니다.",
-        remaningAttempts: 5 - user.failedLoginAttempts,
+        remainingAttempts: 5 - user.failedLoginAttempts,
       });
     }
 
@@ -141,6 +141,21 @@ router.delete("/delete/:userId", async (req, res) => {
     console.log("로그아웃 오류 : ", error.message);
     return res.status(500).json({ message: "서버 오류 발생 했습니다." });
   }
+});
+
+
+router.post("/verify-token", (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(400).json({ isValid: false, message : "토큰이 없습니다." });
+  }
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    return res.status(200).json({isValid: true, user: decoded});
+  } catch (error) {
+    return res.status(401).json({ isValid: false, message: "유효하지 않은 토큰 입니다." });
+  }
+
 });
 
 module.exports = router;
