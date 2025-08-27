@@ -4,12 +4,19 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = 3000;
 
+const userRoutes = require("./routes/user")
+
+app.use(express.json());
+app.use(express.urlencoded());
+
+app.use("/api/auth", userRoutes);
+
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, {dbName: "companyWebsite"})
   .then(() => console.log("MongoDB와 연결 되었습니다."))
   .catch((err) => console.log("Mongodb와 연결 실패", err));
 
