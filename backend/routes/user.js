@@ -101,7 +101,7 @@ router.post("/login", async (req, res) => {
 router.post("/logout", async (req, res) => {
   try {
     console.log(req.cookies);
-    const token = req.cookies.token;
+    const token = req.cookies.token; //쿠키는 Postman 에서 하니깐 잘들어옴, 확장 프로그램 "New Request" 에서 안들온다...
     console.log(token);
     if (!token) {
       return res.status(400).json({ message: "이미 로그아웃된 상태입니다." });
