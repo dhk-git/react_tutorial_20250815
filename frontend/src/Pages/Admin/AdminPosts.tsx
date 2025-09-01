@@ -1,6 +1,6 @@
 //import React from 'react'
 
-const AdminPost = () => {
+const AdminPosts = () => {
   return (
     <div>
       <h1 className="text-black text-lg">AdminPost</h1>
@@ -8,4 +8,4 @@ const AdminPost = () => {
   )
 }
 
-export default AdminPost
+export default AdminPosts
